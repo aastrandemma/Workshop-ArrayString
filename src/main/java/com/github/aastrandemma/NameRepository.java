@@ -14,8 +14,8 @@ public class NameRepository {
     }
 
     public static boolean add(final String fullName) {
-        String foundFulName = find(fullName);
-        if (foundFulName != null) {
+        String foundFullName = find(fullName);
+        if (foundFullName != null) {
             return false;
         }
         String[] newNames = Arrays.copyOf(names, names.length + 1);
@@ -26,5 +26,78 @@ public class NameRepository {
 
     public static int getSize() {
         return names.length;
+    }
+
+    // Part 3
+    public static String[] findByFirstName(final String firstName) {
+        // Searches the array trying to find all names that has passed in first name.
+        // Returns a String array containing all matches.
+        String[] findFirstName = new String[names.length];
+        int count = 0;
+        for (String name : names) {
+            if (name.split(" ")[0].equalsIgnoreCase(firstName)) {
+                findFirstName[count] = name;
+                count++;
+            }
+        }
+        findFirstName = Arrays.copyOfRange(findFirstName, 0, count);
+        return findFirstName;
+    }
+
+    public static String[] findByLastName(final String lastName) {
+        // Searches the array trying to find all names that has passed in last name.
+        // Returns a String array containing all matches.
+        String[] findLastName = new String[names.length];
+        int count = 0;
+        for (String name : names) {
+            if (name.split(" ")[1].equalsIgnoreCase(lastName)) {
+                findLastName[count] = name;
+                count++;
+            }
+        }
+        findLastName = Arrays.copyOfRange(findLastName, 0, count);
+        return findLastName;
+    }
+
+    public static boolean update(final String original, final String updatedName) {
+        // False if name could not be updated because name wasn't found
+        if (find(original) == null) {
+            return false;
+        }
+        // False if name was found but an existing name matching the updatedName already exists
+        if (find(updatedName) != null) {
+            return false;
+        }
+        // Should find a name and replace it with new fullName if available.
+        // Returns true if name was found and updated.
+        for (String name : names) {
+            if (name.equalsIgnoreCase(original)) {
+                name = updatedName;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Part 4
+    public static boolean remove(final String fullName){
+        // Return false if the fullName don't exist
+        if (find(fullName) == null) {
+            return false;
+        }
+
+        // Should remove a name from the array. Returns true if name was removed
+        String[] removeName = Arrays.copyOf(names, names.length);
+        int count = 0;
+
+        for (String name : names) {
+            if (!name.equalsIgnoreCase(fullName)) {
+                removeName[count] = name;
+                count++;
+            }
+        }
+        names = removeName;
+
+        return true;
     }
 }
