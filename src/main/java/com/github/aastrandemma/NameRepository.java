@@ -78,4 +78,26 @@ public class NameRepository {
         }
         return false;
     }
+
+    // Part 4
+    public static boolean remove(final String fullName){
+        // Return false if the fullName don't exist
+        if (find(fullName) == null) {
+            return false;
+        }
+
+        // Should remove a name from the array. Returns true if name was removed
+        String[] removeName = Arrays.copyOf(names, names.length);
+        int count = 0;
+
+        for (String name : names) {
+            if (!name.equalsIgnoreCase(fullName)) {
+                removeName[count] = name;
+                count++;
+            }
+        }
+        names = removeName;
+
+        return true;
+    }
 }

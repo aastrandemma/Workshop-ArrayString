@@ -14,6 +14,9 @@ public class App {
         partThreeOne();
         partThreeTwo();
         partThreeThree();
+
+        // Part 4
+        partFour();
     }
 
     private static void partThreeOne() {
@@ -64,5 +67,12 @@ public class App {
         boolean isAddedTestNameOne = NameRepository.add("Harry Doe");
         boolean isAddedTestNameTwo = NameRepository.add("Tom doe");
         boolean isAddedTestNameThree = NameRepository.add("John Doe");
+    }
+
+    private static void partFour() {
+        boolean isRemoved = NameRepository.remove("Test Testsson");
+        //boolean isRemoved = NameRepository.remove("Anna Andersson"); // False = fullName don't exist
+        System.out.println();
+        System.out.println("isRemoved = " + isRemoved);
     }
 }
