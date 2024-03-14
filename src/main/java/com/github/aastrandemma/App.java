@@ -17,6 +17,8 @@ public class App {
 
         // Part 4
         partFour();
+
+        System.out.println(NameRepository.getSize());
     }
 
     private static void partThreeOne() {

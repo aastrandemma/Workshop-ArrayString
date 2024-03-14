@@ -18,7 +18,7 @@ public class NameRepository {
         if (foundFullName != null) {
             return false;
         }
-        String[] newNames = Arrays.copyOf(names, names.length + 1);
+        String[] newNames = Arrays.copyOf(names, getSize() + 1);
         newNames[newNames.length - 1] = fullName;
         names = newNames;
         return true;
@@ -32,7 +32,7 @@ public class NameRepository {
     public static String[] findByFirstName(final String firstName) {
         // Searches the array trying to find all names that has passed in first name.
         // Returns a String array containing all matches.
-        String[] findFirstName = new String[names.length];
+        String[] findFirstName = new String[getSize()];
         int count = 0;
         for (String name : names) {
             if (name.split(" ")[0].equalsIgnoreCase(firstName)) {
@@ -47,7 +47,7 @@ public class NameRepository {
     public static String[] findByLastName(final String lastName) {
         // Searches the array trying to find all names that has passed in last name.
         // Returns a String array containing all matches.
-        String[] findLastName = new String[names.length];
+        String[] findLastName = new String[getSize()];
         int count = 0;
         for (String name : names) {
             if (name.split(" ")[1].equalsIgnoreCase(lastName)) {
@@ -87,7 +87,7 @@ public class NameRepository {
         }
 
         // Should remove a name from the array. Returns true if name was removed
-        String[] removeName = Arrays.copyOf(names, names.length);
+        String[] removeName = Arrays.copyOf(names, getSize());
         int count = 0;
 
         for (String name : names) {
